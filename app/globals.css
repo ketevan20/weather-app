@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+body {
+    font-family: var(--font-bricolage-grotesque);
+}
+
+.h1 {
+    font-family: var(--font-bricolage-grotesque);
+    font-size: 52px;
+    font-weight: bold;
+    line-height: 120%;
+}

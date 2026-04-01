@@ -10,7 +10,7 @@ import WeatherDetails from './components/WeatherDetails'
 import LoadingSkeleton from './components/LoadingSkeleton'
 
 const page = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className='w-[90%] m-auto flex flex-col gap-16'>
