@@ -10,3 +10,24 @@ body {
     font-weight: bold;
     line-height: 120%;
 }
+
+.h2 {
+    font-family: var(--font-bricolage-grotesque);
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 120%;
+}
+
+.label {
+    font-family: var(--font-bricolage-grotesque);
+    font-size: 18px;
+    font-weight: medium;
+    line-height: 120%;
+}
+
+.text {
+    font-family: var(--font-bricolage-grotesque);
+    font-size: 14px;
+    font-weight: medium;
+    line-height: 120%;
+}
