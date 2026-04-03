@@ -1,5 +1,6 @@
 import React from 'react'
 import { LocationType } from '../types/weather';
+import { getWeatherIcon } from '../utils/weatherIcons';
 
 type CurrentWeatherProps = {
   current: any;
@@ -24,8 +25,8 @@ const CurrentWeather = ({ current, timezone, location }: CurrentWeatherProps) =>
         <p>{formatted}</p>
       </div>
       <div className='flex items-center'>
-        <img src="/images/icon-sunny.webp" alt="weather icon" className='w-30 h-30 object-cover' />
-        <h1 className='h1'>{current?.temperature_2m}°</h1>
+        <img src={getWeatherIcon(current?.weather_code)} alt="weather icon" className='w-30 h-30 object-cover' />
+        <h1 className='h1'>{parseInt(current?.temperature_2m)}°</h1>
       </div>
     </div>
   )

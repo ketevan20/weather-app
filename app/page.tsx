@@ -54,7 +54,7 @@ const page = () => {
                 </div>
                 <DailyForecast timezone={weatherData?.timezone}  daily={weatherData?.daily}/>
               </div>
-              <HourlyForecast />
+              <HourlyForecast timezone={weatherData?.timezone} hourly={weatherData?.hourly}/>
             </div> : <LoadingSkeleton />
         }
       </main>

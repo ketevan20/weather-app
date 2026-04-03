@@ -3,7 +3,7 @@ import { CoordsType, UnitType } from "../types/weather";
 import axios from "axios";
 
 export function useWeather(coords: CoordsType | null, unit: UnitType | null) {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [weatherData, setWeatherData] = useState<any | null>(null);
 
