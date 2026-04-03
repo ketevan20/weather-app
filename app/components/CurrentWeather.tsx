@@ -1,16 +1,18 @@
 import React from 'react'
+import { LocationType } from '../types/weather';
 
 type CurrentWeatherProps = {
   current: any;
   timezone: string;
   time?: string;
+  location?: LocationType;
 }
 
-const CurrentWeather = ({current, timezone, time}: CurrentWeatherProps) => {
+const CurrentWeather = ({current, timezone, time, location}: CurrentWeatherProps) => {
   return (
     <div className='w-full h-full bg-[url("/images/bg-today-large.svg")] bg-no-repeat bg-cover rounded-[20px] px-6 py-20 flex items-center justify-between text-white'>
       <div className='flex flex-col gap-3'>
-        <h2 className='h2'>{timezone}</h2>
+        <h2 className='h2'>{location?.country}, {location?.city}</h2>
         <p>{time}</p>
       </div>
       <div className='flex items-center'>

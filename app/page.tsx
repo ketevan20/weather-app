@@ -8,7 +8,7 @@ import DailyForecast from './components/DailyForecast'
 import CurrentWeather from './components/CurrentWeather'
 import WeatherDetails from './components/WeatherDetails'
 import LoadingSkeleton from './components/LoadingSkeleton'
-import { CoordsType, UnitType } from './types/weather'
+import { CoordsType, LocationType, UnitType } from './types/weather'
 import { useWeather } from './hooks/useWeather'
 import ErrorState from './components/ErrorState'
 
@@ -20,8 +20,12 @@ const page = () => {
   const [unit, setUnit] = useState<UnitType>({
     temperature: 'celsius',
     windSpeed: 'kmh',
-    Precipitation: 'mm',
+    precipitation: 'mm',
   });
+  const [location, setLocation] = useState<LocationType>({
+    country: 'Georgia',
+    city: 'Tbilisi',
+  })
 
   const { loading, error, weatherData } = useWeather(coords, unit);
 
@@ -39,13 +43,13 @@ const page = () => {
       </div>
       <Title />
       <main className='flex flex-col gap-12'>
-        <SearchBar />
+        <SearchBar setCoords={setCoords} handleLocationChange={setLocation}/>
         {
           !loading ?
             <div className='flex gap-8'>
               <div className='flex-1 flex flex-col gap-12'>
                 <div className='flex-[2.5] flex flex-col gap-8'>
-                  <CurrentWeather current={weatherData?.current} timezone={weatherData?.timezone} time={weatherData?.current?.time}/>
+                  <CurrentWeather current={weatherData?.current} timezone={weatherData?.timezone} time={weatherData?.current?.time} location={location}/>
                   <WeatherDetails current={weatherData?.current} />
                 </div>
                 <DailyForecast />
