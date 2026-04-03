@@ -17,16 +17,18 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
   const { loading, suggestions } = useLocation(location);
 
   const handleSearch = (suggestion: Suggestion) => {
-    setLocation('');
-    setCoords({
-      lat: suggestion.latitude,
-      lon: suggestion.longitude,
-    })
-    setSelectedIndex(-1);
-    handleLocationChange({
-      country: suggestion.country,
-      city: suggestion.name,
-    })
+    if (suggestion) {
+      setLocation('');
+      setCoords({
+        lat: suggestion.latitude,
+        lon: suggestion.longitude,
+      })
+      setSelectedIndex(-1);
+      handleLocationChange({
+        country: suggestion.country,
+        city: suggestion.name,
+      })
+    }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
