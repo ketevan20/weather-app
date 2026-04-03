@@ -1,4 +1,5 @@
 import React from 'react'
+import { getWeatherIcon } from '../utils/weatherIcons';
 type DailyForecastProps = {
   timezone: string;
   daily: any;
@@ -25,7 +26,7 @@ const DailyForecast = ({timezone, daily}: DailyForecastProps) => {
         {days.map((day, i) => (
           <div key={i} className='w-full h-full bg-[rgba(38,37,64,1)] py-4 px-2.5 overflow-hidden rounded-xl border border-[rgba(60,59,94,1)] flex flex-col gap-4'>
             <p className='text-center label'>{day}</p>
-            <img src="/images/icon-rain.webp" alt="rain" className='w-15 h-15 self-center'/>
+            <img src={getWeatherIcon(daily?.weather_code?.[i])} alt="weather" className='w-15 h-15 self-center'/>
             <div className='flex items-center justify-between gap-3 text'>
               <p>{parseInt(daily?.temperature_2m_max[i])}°</p>
               <p>{parseInt(daily?.temperature_2m_min[i])}°</p>
