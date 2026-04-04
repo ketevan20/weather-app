@@ -28,6 +28,10 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
         country: suggestion.country,
         city: suggestion.name,
       })
+      localStorage.setItem('location', JSON.stringify({
+        country: suggestion.country,
+        city: suggestion.name,
+      }));
     }
   }
 

@@ -32,6 +32,9 @@ export function useWeather(coords: CoordsType | null, unit: UnitType | null) {
         }
 
         fetchWeather();
+
+        localStorage.setItem('unit', JSON.stringify(unit));
+        localStorage.setItem('coords', JSON.stringify(coords));
     }, [coords, unit])
 
     return { loading, error, weatherData };

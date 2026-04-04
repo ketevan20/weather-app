@@ -62,7 +62,7 @@ const HourlyForecast = ({ timezone, hourly }: HourlyForecastProps) => {
   }, []);
 
   return (
-    <div className='w-1/3 max-h-175 bg-[rgba(38,37,64,1)] rounded-[20px] text-white py-6 pl-6'>
+    <div className='w-1/3 h-175 bg-[rgba(38,37,64,1)] rounded-[20px] text-white py-6 pl-6'>
       <div className='h-full overflow-y-auto custom-scrollbar'>
         <div ref={dropdownRef} className='flex justify-between gap-4 items-center mb-4 relative pr-6'>
           <p>Hourly forecast</p>

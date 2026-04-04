@@ -12,7 +12,7 @@ const details = [
 const LoadingSkeleton = () => {
     return (
         <SkeletonTheme baseColor='#26253e' highlightColor='#3c3b5e'>
-            <div className='w-full flex gap-8 text-white'>
+            <div className='w-full h-175 flex gap-8 text-white'>
                 <div className='flex-1 flex flex-col gap-12'>
                     <div className='flex-[2.5] flex flex-col gap-8'>
                         <div className='w-full h-full bg-[rgba(38,37,64,1)] rounded-[20px] overflow-hidden relative'><Skeleton className="absolute -top-1 h-full" /></div>

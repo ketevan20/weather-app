@@ -24,7 +24,7 @@ const CurrentWeather = ({ current, timezone, location }: CurrentWeatherProps) =>
         <h2 className='h2'>{location?.country}, {location?.city}</h2>
         <p>{formatted}</p>
       </div>
-      <div className='flex items-center'>
+      <div className='flex-none flex items-center'>
         <img src={getWeatherIcon(current?.weather_code)} alt="weather icon" className='w-30 h-30 object-cover' />
         <h1 className='h1'>{parseInt(current?.temperature_2m)}°</h1>
       </div>
