@@ -83,8 +83,8 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
   }, [selectedIndex]);
 
   return (
-    <div className='m-auto flex gap-4' ref={searchRef}>
-      <div className='relative min-w-100 flex flex-col gap-2.5'>
+    <div className='max-md:w-full m-auto flex gap-4 flex-col sm:flex-row' ref={searchRef}>
+      <div className='relative w-full md:min-w-100 flex flex-col gap-2.5'>
         <div className='w-full bg-[rgba(38,37,64,1)] px-6 py-4 flex gap-4 rounded-xl'>
           <img src="/images/icon-search.svg" alt="Search" />
           <input ref={inputRef} onKeyDown={handleKeyDown} onChange={(e) => setLocation(e.target.value)} type="text" className='w-full outline-0 text-white placeholder:text-[rgba(212,211,217,1)] caret-amber-50' placeholder='Search for a place...' />
@@ -111,7 +111,7 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
             handleSearch(suggestions[selectedIndex]);
           }
         }}
-        className='self-start bg-[rgba(70,88,217,1)] hover:bg-[rgba(43,27,156,1)] text-white py-4 px-6 rounded-xl'>Search</button>
+        className='sm:self-start bg-[rgba(70,88,217,1)] hover:bg-[rgba(43,27,156,1)] text-white py-4 px-6 rounded-xl'>Search</button>
     </div>
   )
 }

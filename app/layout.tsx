@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolageGrotesque.variable} antialiased bg-[rgba(2,1,44,1)] pt-12 pb-20`}
+      className={`${bricolageGrotesque.variable} antialiased bg-[rgba(2,1,44,1)] pt-6 pb-12 sm:pt-12 sm:pb-20`}
     >
       <body>{children}</body>
     </html>
