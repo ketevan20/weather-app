@@ -20,12 +20,12 @@ const CurrentWeather = ({ current, timezone, location }: CurrentWeatherProps) =>
 
 
   return (
-    <div className='w-full h-full bg-[url("/images/bg-today-large.svg")] bg-no-repeat bg-cover bg-center rounded-[20px] px-6 py-20 flex items-center justify-between text-white'>
+    <div className='w-full h-full bg-[url("/images/bg-today-large.svg")] bg-no-repeat bg-cover bg-center rounded-[20px] px-6 py-20 flex flex-col sm:flex-row text-center sm:text-left items-center justify-between text-white'>
       <div className='flex flex-col gap-3'>
         <h2 className='h2'>{location?.country}, {location?.city}</h2>
         <p>{formatted}</p>
       </div>
-      <div className='flex-none flex items-center'>
+      <div className='flex-none flex items-center gap-5'>
         <motion.img initial={{ scale: 0 }} animate={{ scale: [1, 0.9, 1] }} transition={{duration: 2, repeat: Infinity}} src={getWeatherIcon(current?.weather_code)} alt="weather icon" className='w-30 h-30 object-cover' />
         <h1 className='h1'>{parseInt(current?.temperature_2m)}°</h1>
       </div>

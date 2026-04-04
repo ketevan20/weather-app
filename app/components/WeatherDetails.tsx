@@ -16,7 +16,7 @@ const WeatherDetails = ({ current, unit }: WeatherDetailsProps) => {
   ];
 
   return (
-    <div className='grid grid-cols-2 sm:grid-cols-4 items-center gap-6 justify-between '>
+    <div className='grid grid-cols-2 sm:grid-cols-4 gap-6 justify-between '>
       {details.map((detail, i) => (
         <motion.div
           key={i}
