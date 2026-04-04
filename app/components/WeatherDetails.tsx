@@ -1,15 +1,17 @@
 import React from 'react'
+import { UnitType } from '../types/weather';
 
 type WeatherDetailsProps = {
   current: any;
+  unit?: UnitType
 }
 
-const WeatherDetails = ({ current }: WeatherDetailsProps) => {
+const WeatherDetails = ({ current, unit }: WeatherDetailsProps) => {
   const details = [
     {"name": "Feels Like", "value": `${current?.apparent_temperature}°`},
     {"name": "Humidity", "value": `${current?.relative_humidity_2m}%`},
-    {"name": "Wind Speed", "value": `${current?.wind_speed_10m} km/h`},
-    {"name": "Precipitation", "value": `${current?.precipitation} mm`}
+    {"name": "Wind Speed", "value": `${current?.wind_speed_10m} ${unit?.windSpeed === 'kmh' ? 'km/h' : 'mph'}`},
+    {"name": "Precipitation", "value": `${current?.precipitation} ${unit?.precipitation === 'mm' ? 'mm' : 'in'}`}
   ];
 
   return (
