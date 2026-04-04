@@ -1,6 +1,7 @@
 import React from 'react'
 import { LocationType } from '../types/weather';
 import { getWeatherIcon } from '../utils/weatherIcons';
+import { motion } from 'motion/react';
 
 type CurrentWeatherProps = {
   current: any;
@@ -25,7 +26,7 @@ const CurrentWeather = ({ current, timezone, location }: CurrentWeatherProps) =>
         <p>{formatted}</p>
       </div>
       <div className='flex-none flex items-center'>
-        <img src={getWeatherIcon(current?.weather_code)} alt="weather icon" className='w-30 h-30 object-cover' />
+        <motion.img initial={{ scale: 0 }} animate={{ scale: [1, 0.9, 1] }} transition={{duration: 2, repeat: Infinity}} src={getWeatherIcon(current?.weather_code)} alt="weather icon" className='w-30 h-30 object-cover' />
         <h1 className='h1'>{parseInt(current?.temperature_2m)}°</h1>
       </div>
     </div>

@@ -66,7 +66,7 @@ const page = () => {
         <SearchBar setCoords={setCoords} handleLocationChange={setLocation} />
         {
           !loading ?
-            <div className='flex gap-8'>
+            <div className='flex flex-col gap-8 lg:flex-row'>
               <div className='flex-1 flex flex-col gap-12'>
                 <div className='flex-[2.5] flex flex-col gap-8'>
                   <CurrentWeather current={weatherData?.current} timezone={weatherData?.timezone} location={location} />

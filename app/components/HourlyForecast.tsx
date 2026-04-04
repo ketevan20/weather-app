@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { getWeatherIcon } from '../utils/weatherIcons';
+import { motion } from 'motion/react';
 
 type HourlyForecastProps = {
   timezone: string;
@@ -62,7 +63,7 @@ const HourlyForecast = ({ timezone, hourly }: HourlyForecastProps) => {
   }, []);
 
   return (
-    <div className='w-1/3 h-175 bg-[rgba(38,37,64,1)] rounded-[20px] text-white py-6 pl-6'>
+    <div className='w-full lg:w-1/3 h-175 bg-[rgba(38,37,64,1)] rounded-[20px] text-white py-6 pl-6'>
       <div className='h-full overflow-y-auto custom-scrollbar'>
         <div ref={dropdownRef} className='flex justify-between gap-4 items-center mb-4 relative pr-6'>
           <p>Hourly forecast</p>
@@ -74,7 +75,7 @@ const HourlyForecast = ({ timezone, hourly }: HourlyForecastProps) => {
             <img src='/images/icon-dropdown.svg' />
           </button>
           {showdropdown && (
-            <div className='absolute top-full right-0 mt-2 mr-6 bg-[rgba(38,37,64,1)] rounded-xl p-2 border border-[rgba(60,59,94,1)] flex flex-col gap-1'>
+            <div className='absolute z-40 top-full right-0 mt-2 mr-6 bg-[rgba(38,37,64,1)] rounded-xl p-2 border border-[rgba(60,59,94,1)] flex flex-col gap-1'>
               {days.map((day, i) => (
                 <p
                   key={i}
@@ -88,13 +89,26 @@ const HourlyForecast = ({ timezone, hourly }: HourlyForecastProps) => {
           )}
         </div>
         {selectedDayHours.map((hour: any, i: number) => (
-          <div key={i} className='bg-[rgba(48,47,74,1)] mb-4 py-2.5 px-3 mr-6 min-h-15 rounded-lg overflow-hidden border border-[rgba(60,59,94,1)] flex items-center justify-between'>
-            <div className='flex gap-2 items-center'>
+          <motion.div
+            key={i}
+            variants={{ hover: { x: 5 } }}
+            initial={{ x: 0 }}
+            whileHover="hover"
+            transition={{ duration: 0.3 }}
+            className='relative bg-[rgba(48,47,74,1)] mb-4 py-2.5 px-3 mr-6 min-h-15 rounded-lg overflow-hidden border border-[rgba(60,59,94,1)] flex items-center justify-between'>
+            <div className='flex gap-2 items-center relative z-20'>
               <img src={getWeatherIcon(hour.weatherCode)} alt="weather icon" className='w-10 h-10 object-cover' />
               <p className='label'>{formatHour(hour.time)}</p>
             </div>
-            <p className='label'>{hour.temperature}°</p>
-          </div>
+            <p className='label relative z-20'>{hour.temperature}°</p>
+
+            <motion.div
+              variants={{ hover: { scaleX: 1 } }}
+              initial={{ scaleX: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ originX: 0 }}
+              className='absolute inset-0 bg-[rgba(60,59,94,1)]'></motion.div>
+          </motion.div>
         ))}
       </div>
     </div>
