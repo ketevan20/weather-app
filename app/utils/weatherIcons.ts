@@ -8,5 +8,5 @@ export const getWeatherIcon = (code: number): string => {
   if (code <= 77)                         return '/images/icon-snow.webp'
   if (code <= 82)                         return '/images/icon-rain.webp'
   if (code <= 86)                         return '/images/icon-snow.webp'
-  return '/images/weather/stormy.webp'    
+  return '/images/icon-storm.webp'    
 }
