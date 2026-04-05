@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from '../hooks/useLocation'
 import { LocationType, Suggestion } from '../types/weather';
+import { LocateIcon } from 'lucide-react';
 
 type SearchBarProps = {
   setCoords: (coords: { lat: number; lon: number }) => void;
@@ -15,6 +16,42 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const { loading, suggestions } = useLocation(location);
+
+  const useCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation not supported");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        setCoords({ lat: latitude, lon: longitude });
+
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        );
+        const data = await res.json();
+
+        const city =
+          data.address.city ||
+          data.address.town ||
+          data.address.village ||
+          data.address.county;
+
+        const country = data.address.country;
+
+        handleLocationChange({
+          city: city || 'Unknown City',
+          country: country || 'Unknown Country',
+        })
+      },
+      (error) => {
+        alert("Error getting current location");
+      }
+    );
+  };
 
   const handleSearch = (suggestion: Suggestion) => {
     if (suggestion) {
@@ -95,7 +132,7 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
         </div>}
 
         {suggestions.length > 0 && location.trim() !== '' && (
-          <div ref={dropdownRef} className="absolute left-0 right-0 mt-16 max-h-46 overflow-y-scroll custom-scrollbar bg-[rgba(38,37,64,1)] rounded-xl p-2 text-white flex flex-col gap-2">
+          <div ref={dropdownRef} className="absolute left-0 right-0 z-40 mt-16 max-h-46 overflow-y-scroll custom-scrollbar bg-[rgba(38,37,64,1)] rounded-xl p-2 text-white flex flex-col gap-2">
             {suggestions.map((suggestion, index) => (
               <button onClick={() => handleSearch(suggestion)} key={suggestion.id} className={`text-left cursor-pointer px-4 py-3 rounded-lg transition-all hover:bg-[rgba(48,47,74,1)] border border-[rgba(38,37,64,1)] ${selectedIndex === index ? 'bg-[rgba(48,47,74,1)] border-[rgba(60,59,94,1)]' : ''
                 }`}>
@@ -112,6 +149,7 @@ const SearchBar = ({ setCoords, handleLocationChange }: SearchBarProps) => {
           }
         }}
         className='sm:self-start bg-[rgba(70,88,217,1)] hover:bg-[rgba(43,27,156,1)] text-white py-4 px-6 rounded-xl'>Search</button>
+      <button onClick={() => useCurrentLocation()} className='bg-[rgba(70,88,217,1)] hover:bg-[rgba(43,27,156,1)] text-white p-4 rounded-xl flex justify-center' title='Use current location'><LocateIcon className='text-white' /></button>
     </div>
   )
 }
